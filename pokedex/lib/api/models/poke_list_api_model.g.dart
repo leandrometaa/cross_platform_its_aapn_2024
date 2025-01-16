@@ -8,10 +8,20 @@ part of 'poke_list_api_model.dart';
 
 _$PokeListApiModelImpl _$$PokeListApiModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$PokeListApiModelImpl(
-      (json['results'] as List<dynamic>)
-          .map((e) => PokeSnippetApiModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+    $checkedCreate(
+      r'_$PokeListApiModelImpl',
+      json,
+      ($checkedConvert) {
+        final val = _$PokeListApiModelImpl(
+          $checkedConvert(
+              'results',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      PokeSnippetApiModel.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
 Map<String, dynamic> _$$PokeListApiModelImplToJson(
