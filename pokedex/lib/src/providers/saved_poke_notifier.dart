@@ -19,7 +19,9 @@ class SavedPokeNotifier extends _$SavedPokeNotifier {
     ];
   }
 
-  void remove(PokeSavedModel model) {
+  void remove(
+    PokeSavedModel model,
+  ) {
     state = [
       ...state.where(
         (element) => element != model,

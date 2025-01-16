@@ -12,7 +12,7 @@ class PokeSnippetModel with _$PokeSnippetModel {
   }) = _PokeSnippetModel;
 }
 
-extension PokeListSnippetApiModelExt on List<PokeSnippetApiModel> {
+extension PokeListSnippetApiModelAdapter on List<PokeSnippetApiModel> {
   List<PokeSnippetModel> toModels() {
     return [
       for (final model in this) //
@@ -21,13 +21,12 @@ extension PokeListSnippetApiModelExt on List<PokeSnippetApiModel> {
   }
 }
 
-extension PokeSnippetApiModelExt on PokeSnippetApiModel {
+extension PokeSnippetApiModelAdapter on PokeSnippetApiModel {
   PokeSnippetModel toModel() {
-    // logica che trasforma l'oggetto API in un oggetto MIO!
+    if (!url.startsWith("http")) throw const FormatException();
     final split = url.split('/');
     final [..., id, _] = split;
     final integer = int.parse(id);
-
     return PokeSnippetModel(
       id: integer,
       name: name,
