@@ -27,12 +27,13 @@ class PokeListPage extends ConsumerWidget {
               children: [
                 for (final element in value)
                   ListTile(
+                    onTap: () {
+                      context.push("/${element.id}");
+                    },
                     leading: Text("${element.id}"),
                     title: Text(element.name),
                     trailing: IconButton(
-                      onPressed: () {
-                        context.push("/${element.id}");
-                      },
+                      onPressed: () {},
                       icon: const Icon(Icons.save),
                     ),
                   ),
