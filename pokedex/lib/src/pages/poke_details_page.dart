@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pokedex/src/models/poke_model.dart';
+import 'package:pokedex/src/pages/save_poke_page.dart';
 import 'package:pokedex/src/providers/poke_details_provider.dart';
 
 class PokeDetailsPage extends ConsumerWidget {
@@ -21,6 +22,22 @@ class PokeDetailsPage extends ConsumerWidget {
           AsyncError() => const Text("Attenzione!"),
           _ => const Text("Caricamento ...")
         },
+        actions: [
+          if (pokemon case AsyncData(:final value))
+            IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Dialog.fullscreen(
+                      child: SavePokePage(name: value.name),
+                    );
+                  },
+                );
+              },
+              icon: const Icon(Icons.save),
+            )
+        ],
       ),
       body: switch (pokemon) {
         AsyncData(:final value) => Column(
