@@ -68,7 +68,7 @@ Sì, esatto. La vostra classe API dovrà esporre due metodi diversi. Uno ti dà 
 4. Noterete che la seconda request è parametrizzata, ovvero ci serve un `id` per poter fare la request, e quindi anche il nostro provider deve esserlo. Vi ricordo che in riverpod i parametri possono essere semplicemente essere "passati" nella loro definizione:
 ```dart
 @riverpod
-int funzioneParametrizzata(FunzioneParametrizzataRef ref, int i) {
+int funzioneParametrizzata(Ref ref, int i) {
   return 0 + i;
 }
 ```

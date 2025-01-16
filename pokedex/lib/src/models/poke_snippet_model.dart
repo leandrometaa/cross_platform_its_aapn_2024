@@ -12,7 +12,7 @@ class PokeSnippetModel with _$PokeSnippetModel {
   }) = _PokeSnippetModel;
 }
 
-extension Pluto on List<PokeSnippetApiModel> {
+extension PokeListSnippetApiModelExt on List<PokeSnippetApiModel> {
   List<PokeSnippetModel> toModels() {
     return [
       for (final model in this) //
@@ -21,7 +21,7 @@ extension Pluto on List<PokeSnippetApiModel> {
   }
 }
 
-extension Pippo on PokeSnippetApiModel {
+extension PokeSnippetApiModelExt on PokeSnippetApiModel {
   PokeSnippetModel toModel() {
     // logica che trasforma l'oggetto API in un oggetto MIO!
     final split = url.split('/');

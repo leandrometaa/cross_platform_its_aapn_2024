@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pokedex/src/providers/poke_snippet_provider.dart';
 
 class PokeListPage extends ConsumerWidget {
@@ -30,7 +31,7 @@ class PokeListPage extends ConsumerWidget {
                     title: Text(element.name),
                     trailing: IconButton(
                       onPressed: () {
-                        // TODO
+                        context.push("/${element.id}");
                       },
                       icon: const Icon(Icons.save),
                     ),
