@@ -6,7 +6,7 @@ part 'http_client_provider.g.dart';
 
 @riverpod
 Dio httpClient(HttpClientRef ref) {
-  final options = BaseOptions(baseUrl: 'https://Dogsapi.com/api');
+  final options = BaseOptions(baseUrl: 'https://dog.ceo/api');
   final client = Dio(options);
   ref.onDispose(client.close);
 
