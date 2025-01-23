@@ -17,8 +17,9 @@ class DogsApi {
   const DogsApi(this.client);
   final Dio client;
 
-  Future<DogByBreedResponseModel> getDogsByBreed(
-      [String breed = 'shiba']) async {
+  Future<DogByBreedResponseModel> getDogsByBreed([
+    String breed = 'shiba',
+  ]) async {
     final response = await client.get('/breed/$breed/images');
     return DogByBreedResponseModel.fromJson(response.data);
   }
