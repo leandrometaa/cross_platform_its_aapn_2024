@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:rick_and_morty/src/models/gender.dart';
-import 'package:rick_and_morty/src/models/status.dart';
-import 'package:rick_and_morty/src/providers/gender_provider.dart';
-import 'package:rick_and_morty/src/providers/status_provider.dart';
 
 class FilterPage extends ConsumerWidget {
   FilterPage({super.key});
@@ -38,9 +34,7 @@ class FilterPage extends ConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // salvare i filtri!
-                // TODO(fren): mettere qui un print del form value aggiornato!
-                // print(...);
+                print(form.value);
               },
               child: const Text("Aggiorna"),
             )
@@ -58,8 +52,22 @@ class StatusFiltersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(fren): completare qui la colonna con le checkbox degli status
-    return const Column();
+    return Column(
+      children: [
+        ReactiveCheckboxListTile(
+          formControlName: "statusAlive",
+          title: const Text("Alive?"),
+        ),
+        ReactiveCheckboxListTile(
+          formControlName: "statusDead",
+          title: const Text("Dead?"),
+        ),
+        ReactiveCheckboxListTile(
+          formControlName: "statusUnknown",
+          title: const Text("Unknown?"),
+        ),
+      ],
+    );
   }
 }
 
