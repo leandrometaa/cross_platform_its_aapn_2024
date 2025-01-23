@@ -23,15 +23,29 @@ class FilterPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print(form.value);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Filtra i personaggi!"),
-        ),
-        body: Row(
+      appBar: AppBar(
+        title: const Text("Filtra i personaggi!"),
+      ),
+      body: ReactiveForm(
+        formGroup: form,
+        child: Column(
           children: [
-            GenderFiltersWidget(),
-            StatusFiltersWidget(),
+            const Row(
+              children: [
+                Expanded(child: GenderFiltersWidget()),
+                Expanded(child: StatusFiltersWidget()),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // salvare i filtri!
+              },
+              child: const Text("Aggiorna"),
+            )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -42,7 +56,7 @@ class StatusFiltersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return const Column();
   }
 }
 
@@ -54,7 +68,24 @@ class GenderFiltersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ReactiveCheckbox()],
+      children: [
+        ReactiveCheckboxListTile(
+          formControlName: "genderFemale",
+          title: const Text("Female?"),
+        ),
+        ReactiveCheckboxListTile(
+          formControlName: "genderMale",
+          title: const Text("Male?"),
+        ),
+        ReactiveCheckboxListTile(
+          formControlName: "genderGenderless",
+          title: const Text("Genderless?"),
+        ),
+        ReactiveCheckboxListTile(
+          formControlName: "genderUnknown",
+          title: const Text("Unknown?"),
+        ),
+      ],
     );
   }
 }
