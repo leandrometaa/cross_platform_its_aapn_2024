@@ -17,7 +17,7 @@ final router = GoRouter(
     GoRoute(
       path: '/filters',
       name: 'filters',
-      builder: (context, state) => const FilterPage(),
+      builder: (context, state) => FilterPage(),
     )
   ],
 );
