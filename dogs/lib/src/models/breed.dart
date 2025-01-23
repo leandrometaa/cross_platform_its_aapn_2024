@@ -1,4 +1,4 @@
-import 'package:rick_and_morty/api/models/breeds_api_response_model.dart';
+import 'package:dogs/api/models/breeds_api_response_model.dart';
 
 typedef Breed = String;
 

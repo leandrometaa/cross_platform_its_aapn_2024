@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/router.dart';
+import 'package:dogs/router.dart';
 
 class Dogs extends StatelessWidget {
   const Dogs({super.key});

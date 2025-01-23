@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:rick_and_morty/json.dart';
+import 'package:dogs/json.dart';
 
 part 'breeds_api_response_model.freezed.dart';
 part 'breeds_api_response_model.g.dart';

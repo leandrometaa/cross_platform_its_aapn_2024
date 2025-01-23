@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rick_and_morty/api/http_client_provider.dart';
-import 'package:rick_and_morty/api/models/breeds_api_response_model.dart';
-import 'package:rick_and_morty/api/models/dog_by_breed_response_model.dart';
+import 'package:dogs/api/http_client_provider.dart';
+import 'package:dogs/api/models/breeds_api_response_model.dart';
+import 'package:dogs/api/models/dog_by_breed_response_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'dogs_api.g.dart';
