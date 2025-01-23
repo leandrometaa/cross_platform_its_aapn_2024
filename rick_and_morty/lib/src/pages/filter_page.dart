@@ -10,7 +10,13 @@ class FilterPage extends ConsumerWidget {
   FilterPage({super.key});
 
   final form = FormGroup({
-    'genders': FormControl<List<Gender>>(value: []),
+    "genderFemale": FormControl<bool>(value: false),
+    "genderMale": FormControl<bool>(value: false),
+    "genderGenderless": FormControl<bool>(value: false),
+    "genderUnknown": FormControl<bool>(value: false),
+    'statusAlive': FormControl<bool>(value: false),
+    'statusDead': FormControl<bool>(value: false),
+    'statusUnknown': FormControl<bool>(value: false),
   });
 
   @override
@@ -47,6 +53,8 @@ class GenderFiltersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return Column(
+      children: [ReactiveCheckbox()],
+    );
   }
 }
