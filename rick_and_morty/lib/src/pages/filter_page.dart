@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:rick_and_morty/src/providers/filters_notifier.dart';
 
 class FilterPage extends ConsumerWidget {
   FilterPage({super.key});
@@ -17,7 +18,6 @@ class FilterPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print(form.value);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Filtra i personaggi!"),
@@ -34,7 +34,9 @@ class FilterPage extends ConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                print(form.value);
+                ref //
+                    .read(filtersNotifierProvider.notifier)
+                    .update(form.value);
               },
               child: const Text("Aggiorna"),
             )
