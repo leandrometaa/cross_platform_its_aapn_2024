@@ -6,7 +6,7 @@ part of 'dogs_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dogsHash() => r'2584eea4c0755d918d7a69d0db8395c954910a4a';
+String _$dogsHash() => r'869809780b3f8409996ad85872087d1eb4b78074';
 
 /// See also [dogs].
 @ProviderFor(dogs)
