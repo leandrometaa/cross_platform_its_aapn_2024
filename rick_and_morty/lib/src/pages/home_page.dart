@@ -43,10 +43,18 @@ class _HomePageState extends ConsumerState<HomePage> {
             children: [
               ReactiveTextField<String>(
                 formControlName: 'query',
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: "Rick...",
-                  label: Text("Search your favorite character!"),
-                  suffixIcon: Icon(Icons.search),
+                  label: const Text("Search your favorite character!"),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      form.control('query').value = null;
+                      setState(() {
+                        _query = null;
+                      });
+                    },
+                    icon: const Icon(Icons.cancel),
+                  ),
                 ),
                 onSubmitted: (control) {
                   setState(() {

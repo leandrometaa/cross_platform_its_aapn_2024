@@ -4,18 +4,16 @@ import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:rick_and_morty/src/models/gender.dart';
 import 'package:rick_and_morty/src/models/status.dart';
+import 'package:rick_and_morty/src/providers/filter_form_provider.dart';
 import 'package:rick_and_morty/src/providers/filters_notifier.dart';
 
 class FilterPage extends ConsumerWidget {
   FilterPage({super.key});
 
-  final form = FormGroup({
-    "gender": FormControl<String>(value: null),
-    "status": FormControl<String>(value: null),
-  });
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final form = ref.watch(filterFormProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Filtra i personaggi!"),
