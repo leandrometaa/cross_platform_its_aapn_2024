@@ -10,5 +10,8 @@ class FiltersNotifier extends _$FiltersNotifier {
     return FilterModel.empty();
   }
 
-  void update(Map<String, Object?> formValue) {}
+  void update(Map<String, Object?> formValue) {
+    final value = FilterModel.fromJson(formValue);
+    state = value;
+  }
 }

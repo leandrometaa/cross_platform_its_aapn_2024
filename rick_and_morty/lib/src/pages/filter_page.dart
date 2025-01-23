@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:rick_and_morty/src/models/gender.dart';
+import 'package:rick_and_morty/src/models/status.dart';
 import 'package:rick_and_morty/src/providers/filters_notifier.dart';
 
 class FilterPage extends ConsumerWidget {
   FilterPage({super.key});
 
   final form = FormGroup({
-    "genderFemale": FormControl<bool>(value: false),
-    "genderMale": FormControl<bool>(value: false),
-    "genderGenderless": FormControl<bool>(value: false),
-    "genderUnknown": FormControl<bool>(value: false),
-    'statusAlive': FormControl<bool>(value: false),
-    'statusDead': FormControl<bool>(value: false),
-    'statusUnknown': FormControl<bool>(value: false),
+    "gender": FormControl<Gender>(value: null),
+    "status": FormControl<Status>(value: null),
   });
 
   @override
@@ -56,16 +53,19 @@ class StatusFiltersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ReactiveCheckboxListTile(
-          formControlName: "statusAlive",
+        ReactiveRadioListTile<Status?>(
+          value: Status.alive,
+          formControlName: "status",
           title: const Text("Alive?"),
         ),
-        ReactiveCheckboxListTile(
-          formControlName: "statusDead",
+        ReactiveRadioListTile(
+          value: Status.dead,
+          formControlName: "status",
           title: const Text("Dead?"),
         ),
-        ReactiveCheckboxListTile(
-          formControlName: "statusUnknown",
+        ReactiveRadioListTile(
+          value: Status.unknown,
+          formControlName: "status",
           title: const Text("Unknown?"),
         ),
       ],
@@ -82,20 +82,24 @@ class GenderFiltersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ReactiveCheckboxListTile(
-          formControlName: "genderFemale",
+        ReactiveRadioListTile(
+          value: Gender.female,
+          formControlName: "gender",
           title: const Text("Female?"),
         ),
-        ReactiveCheckboxListTile(
-          formControlName: "genderMale",
+        ReactiveRadioListTile(
+          value: Gender.male,
+          formControlName: "gender",
           title: const Text("Male?"),
         ),
-        ReactiveCheckboxListTile(
-          formControlName: "genderGenderless",
+        ReactiveRadioListTile(
+          value: Gender.genderless,
+          formControlName: "gender",
           title: const Text("Genderless?"),
         ),
-        ReactiveCheckboxListTile(
-          formControlName: "genderUnknown",
+        ReactiveRadioListTile(
+          value: Gender.unknown,
+          formControlName: "gender",
           title: const Text("Unknown?"),
         ),
       ],

@@ -14,10 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+FilterModel _$FilterModelFromJson(Map<String, dynamic> json) {
+  return _FilterModel.fromJson(json);
+}
+
 /// @nodoc
 mixin _$FilterModel {
   Gender? get gender => throw _privateConstructorUsedError;
   Status? get status => throw _privateConstructorUsedError;
+
+  /// Serializes this FilterModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of FilterModel
   /// with the given fields replaced by the non-null parameter values.
@@ -107,9 +114,12 @@ class __$$FilterModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$FilterModelImpl with DiagnosticableTreeMixin implements _FilterModel {
   const _$FilterModelImpl({required this.gender, required this.status});
+
+  factory _$FilterModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FilterModelImplFromJson(json);
 
   @override
   final Gender? gender;
@@ -139,6 +149,7 @@ class _$FilterModelImpl with DiagnosticableTreeMixin implements _FilterModel {
             (identical(other.status, status) || other.status == status));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, gender, status);
 
@@ -149,12 +160,22 @@ class _$FilterModelImpl with DiagnosticableTreeMixin implements _FilterModel {
   @pragma('vm:prefer-inline')
   _$$FilterModelImplCopyWith<_$FilterModelImpl> get copyWith =>
       __$$FilterModelImplCopyWithImpl<_$FilterModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FilterModelImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _FilterModel implements FilterModel {
   const factory _FilterModel(
       {required final Gender? gender,
       required final Status? status}) = _$FilterModelImpl;
+
+  factory _FilterModel.fromJson(Map<String, dynamic> json) =
+      _$FilterModelImpl.fromJson;
 
   @override
   Gender? get gender;
