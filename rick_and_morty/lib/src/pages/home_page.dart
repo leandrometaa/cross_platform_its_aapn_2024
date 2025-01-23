@@ -4,13 +4,22 @@ import 'package:go_router/go_router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:rick_and_morty/src/providers/search_provider.dart';
 
-class HomePage extends ConsumerWidget {
-  HomePage({super.key});
-
-  final form = FormGroup({'query': FormControl<String>(value: '')});
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage> {
+  final form = FormGroup({'query': FormControl<String>(value: '')});
+
+  String? _query;
+
+  @override
+  Widget build(BuildContext context) {
+    final results = ref.watch(searchProvider(_query));
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Rick and morty!"),
@@ -32,46 +41,44 @@ class HomePage extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ReactiveTextField(
+              ReactiveTextField<String>(
                 formControlName: 'query',
                 decoration: const InputDecoration(
                   hintText: "Rick...",
                   label: Text("Search your favorite character!"),
                   suffixIcon: Icon(Icons.search),
                 ),
+                onSubmitted: (control) {
+                  setState(() {
+                    _query = control.value;
+                  });
+                },
               ),
-              ReactiveFormConsumer(
-                builder: (context, form, child) {
-                  final String query = this.form.control('query').value;
-                  final results = ref.watch(searchProvider(query));
-
-                  return Expanded(
-                    child: switch (results) {
-                      AsyncData(:final value) => ListView(
-                          children: [
-                            for (final result in value)
-                              Card(
-                                margin: const EdgeInsets.all(8),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(result.name),
-                                    const SizedBox(height: 12),
-                                    Image.network(result.image),
-                                  ],
-                                ),
-                              )
-                          ],
-                        ),
-                      AsyncError() => const Center(
-                          child: Text("you're out of the universe"),
-                        ),
-                      _ => const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                    },
-                  );
+              Expanded(
+                child: switch (results) {
+                  AsyncData(:final value) => ListView(
+                      children: [
+                        for (final result in value)
+                          Card(
+                            margin: const EdgeInsets.all(8),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(result.name),
+                                const SizedBox(height: 12),
+                                Image.network(result.image),
+                              ],
+                            ),
+                          )
+                      ],
+                    ),
+                  AsyncError() => const Center(
+                      child: Text("you're out of the universe"),
+                    ),
+                  _ => const Center(
+                      child: CircularProgressIndicator(),
+                    )
                 },
               )
             ],
