@@ -23,7 +23,9 @@ extension PokeListSnippetApiModelAdapter on List<PokeSnippetApiModel> {
 
 extension PokeSnippetApiModelAdapter on PokeSnippetApiModel {
   PokeSnippetModel toModel() {
-    if (!url.startsWith("http")) throw const FormatException();
+    assert(url.startsWith("http"), "must be a valid url");
+    assert(url.endsWith("/"), "must end with a slash");
+
     final split = url.split('/');
     final [..., id, _] = split;
     final integer = int.parse(id);
