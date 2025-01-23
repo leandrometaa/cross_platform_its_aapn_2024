@@ -39,6 +39,8 @@ class FilterPage extends ConsumerWidget {
             ElevatedButton(
               onPressed: () {
                 // salvare i filtri!
+                // TODO(fren): mettere qui un print del form value aggiornato!
+                // print(...);
               },
               child: const Text("Aggiorna"),
             )
@@ -56,6 +58,7 @@ class StatusFiltersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(fren): completare qui la colonna con le checkbox degli status
     return const Column();
   }
 }
